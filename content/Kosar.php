@@ -10,7 +10,7 @@ class Kosar
     /**
      * @param $item
      */
-    public function add_item($item)
+    public function add_aru($item)
     {
         if (!key_exists($item, $_SESSION)) {
             $_SESSION[$item] = 0;
@@ -18,16 +18,6 @@ class Kosar
         }
         $_SESSION[$item]++;
 
-
-    }
-
-
-    /**
-     * @return float|int
-     */
-    public function aru_db()
-    {
-        return array_sum($_SESSION);
 
     }
 
@@ -108,11 +98,11 @@ class Kosar
 
         $sql = "SELECT * FROM `termek_kedvezmeny` WHERE kedv_tip_id=3;";
         $result = mysqli_query($con, $sql, MYSQLI_ASSOC);
-        $ret = [];
-        while ($row2 = mysqli_fetch_array($result, MYSQLI_BOTH)) {
-            array_push($ret, $row2);
+        $kedvezmenyek = [];
+        while ($row2 = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            array_push($kedvezmenyek, $row2);
         }
-        return $ret;
+        return $kedvezmenyek;
 
 
     }
